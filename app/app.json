@@ -42,7 +42,8 @@
     "scheme": "lettered",
     "backgroundColor": "#0C0C0B",
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": true,
+      "baseUrl": "/lettered/app"
     }
   }
 }

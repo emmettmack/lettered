@@ -33,3 +33,11 @@ Demo-only controls are labeled "Demo" and must be removed before launch.
 ## Before App Store
 
 Apple Developer account, EAS build, in-app purchase, backend, real photos, moderation (report, block, delete account), privacy policy and age rating. See the plan in CLAUDE.md.
+
+## Publish the web demo
+
+```bash
+cd app && npx expo export -p web   # baseUrl is /lettered/app in app.json
+```
+
+Copy `dist/` into `app/` on the `gh-pages` branch (also copy `index.html` to `404.html`, keep `.nojekyll`), commit and push. Pages serves `gh-pages`; the old prototype stays at the site root.
