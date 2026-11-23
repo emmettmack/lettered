@@ -40,10 +40,13 @@ An interest survey promised early-access signups (email/phone) their first month
 
 ## Repo state
 
-- `prototype/index.html`: the old single-file clickable prototype (plain HTML/CSS/JS, no build). Reference for flow and copy only. It is being replaced.
-- `index.html`: redirects the GitHub Pages root to the prototype.
-- `docs/product.md`, `docs/brand.md`: still accurate. Keep. Brand colors, fonts and approved copy lines are binding.
-- No backend, no app code, no tests, no CI.
+- `app/`: the real product. Expo (React Native, SDK 58) with Expo Router, TypeScript. Every screen is navigable on mock data: cover, invite, apply, received, the email, accepted, subscription sheet, code, Discover (Date/Friends), match, messages, chat, You. See `app/README.md`.
+- `assets/logo/`: the torch, as SVG. `torch.svg` is the square app icon, `torch-transparent.svg` is the mark alone.
+- `prototype/index.html`: the old single-file prototype. Reference only. Delete once Ben and Emmett agree the app has replaced it.
+- `index.html`: redirects GitHub Pages to the old prototype.
+- `docs/product.md`, `docs/brand.md`: accurate. Brand colors, fonts and approved copy are binding. `docs/palette.html` is superseded by brand.md.
+- Not built yet: backend, real auth, payments, codes, acceptance emails, real photos, push. All of that is mocked in `app/src/lib/store.tsx` and `app/src/lib/data.ts`.
+- No Xcode on Emmett's Mac yet. Verify with `npx expo start --web`; ship iOS builds with Expo's cloud build (`eas build`).
 
 ## How to work with Emmett
 
@@ -59,4 +62,4 @@ An interest survey promised early-access signups (email/phone) their first month
 - Never tell a rejected applicant anything. No status updates, no timelines.
 - No analytics, logs or emails that expose who is a member.
 - Verify UI changes in a real browser or simulator before committing.
-- Do not start building until Emmett has approved the plan.
+- Emmett approved building the Expo app on mock data. Payments, backend and submission still wait on his answers to the open decisions.
