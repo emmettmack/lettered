@@ -39,6 +39,7 @@ export default function Root() {
             <Stack.Screen name="membership" options={{ presentation: 'formSheet', sheetAllowedDetents: [0.52], sheetCornerRadius: 38, contentStyle: { backgroundColor: color.night2 } }} />
             <Stack.Screen name="match/[id]" options={{ presentation: 'fullScreenModal', animation: 'fade' }} />
             <Stack.Screen name="chat/[id]" options={{ animation: 'slide_from_right' }} />
+            <Stack.Screen name="travel" options={{ animation: 'slide_from_right' }} />
           </Stack>
         </PhoneFrame>
       </StoreProvider>

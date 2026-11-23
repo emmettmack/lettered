@@ -6,13 +6,19 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Photo } from '@/components/Photo';
 import { Glass, Sans, Serif, tap } from '@/components/ui';
 import { people, type Mode } from '@/lib/data';
+import { fmtRange, today } from '@/lib/dates';
 import { useStore } from '@/lib/store';
 import { color, font } from '@/lib/theme';
 
 // A short, curated set each day. When it runs out, it's out until tomorrow.
 export default function Discover() {
   const i = useSafeAreaInsets();
-  const { mode, setMode, seen, decide, paused } = useStore();
+  const { mode, setMode, seen, decide, paused, home, trips } = useStore();
+  const t = today();
+  const here = trips.find((x) => t >= x.start && t <= x.end);
+  const upcoming = trips.find((x) => x.start > t);
+  const where = here ? `${here.place.name.split(',')[0]} · until ${fmtRange(here.end, here.end)}` : home.name.split(',')[0];
+  const soon = !here && upcoming ? `${upcoming.place.name.split(',')[0]} ${fmtRange(upcoming.start, upcoming.end)}` : null;
   const accent = mode === 'Date' ? color.torch : color.sky;
   const deck = people.filter((p) => p.mode === mode && !seen[mode].includes(p.id));
   const p = deck[0];
@@ -43,6 +49,11 @@ export default function Discover() {
 
       <View style={{ paddingTop: i.top + 8, paddingHorizontal: 24 }} pointerEvents="box-none">
         <ModeSwitch mode={mode} onChange={setMode} />
+        <Pressable accessibilityRole="button" accessibilityLabel="Where you'll be" onPress={() => { tap(); router.push('/travel'); }} style={{ marginTop: 10, alignSelf: 'flex-start' }}>
+          <Text style={{ fontFamily: font.sans, fontSize: 13, color: 'rgba(241,238,231,0.7)' }}>
+            {where}{soon ? <Text style={{ color: 'rgba(241,238,231,0.45)' }}>  ·  next {soon}</Text> : null}
+          </Text>
+        </Pressable>
         {p && (
           <View style={{ flexDirection: 'row', gap: 4, marginTop: 14 }} pointerEvents="none">
             {p.tones.map((_, k) => <View key={k} style={{ flex: 1, height: 2, borderRadius: 1, backgroundColor: k === ph ? accent : 'rgba(241,238,231,0.25)' }} />)}

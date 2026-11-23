@@ -3,12 +3,14 @@ import { Pressable, ScrollView, Switch, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Photo } from '@/components/Photo';
 import { Band, Label, Sans, Serif, tap } from '@/components/ui';
+import { fmtRange } from '@/lib/dates';
 import { useStore } from '@/lib/store';
 import { color, font } from '@/lib/theme';
 
 export default function You() {
   const i = useSafeAreaInsets();
-  const { name, door, hideFromSchool, paused, vouchesLeft, set, reset } = useStore();
+  const { name, door, hideFromSchool, paused, vouchesLeft, home, trips, set, reset } = useStore();
+  const next = trips[0];
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: color.night }} contentContainerStyle={{ paddingTop: i.top + 24, paddingBottom: i.bottom + 120, paddingHorizontal: 24 }}>
@@ -19,6 +21,15 @@ export default function You() {
           <Sans muted style={{ fontSize: 14 }}>Track, USC</Sans>
         </View>
       </View>
+
+      <Label style={{ marginTop: 40 }}>Where you’ll be</Label>
+      <Pressable accessibilityRole="button" onPress={() => { tap(); router.push('/travel'); }} style={({ pressed }) => ({ paddingVertical: 18, borderBottomWidth: 1, borderBottomColor: color.night3, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', opacity: pressed ? 0.6 : 1 })}>
+        <View style={{ flex: 1 }}>
+          <Sans>{home.name}</Sans>
+          <Sans muted style={{ fontSize: 14, marginTop: 4 }}>{next ? `Next: ${next.place.name.split(',')[0]}, ${fmtRange(next.start, next.end)}` : 'Add a window for a trip or a meet.'}</Sans>
+        </View>
+        <Text style={{ fontFamily: font.sans, fontSize: 20, color: color.ash }}>›</Text>
+      </Pressable>
 
       <Label style={{ marginTop: 40 }}>Privacy</Label>
       <Row title="Hide me from my school" body="People from your school won’t see you." value={hideFromSchool} onChange={(v) => set({ hideFromSchool: v })} />

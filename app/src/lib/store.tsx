@@ -1,7 +1,21 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
 import { openers, people, type Message, type Mode } from './data';
+import { overlaps, today } from './dates';
+import { LA, type GeoPlace } from './geo';
 
 // In-memory app state for the first draft. Swapped for the backend later.
+export type Trip = { id: string; place: GeoPlace; start: string; end: string; reason: string };
+export const MAX_TRIPS = 2;
+
+/** Why a window can't be saved, or null if it can. */
+export function tripProblem(existing: Trip[], t: Trip): string | null {
+  const others = existing.filter((x) => x.id !== t.id);
+  if (others.length >= MAX_TRIPS) return 'You can have two windows at a time.';
+  if (t.end < today()) return 'That window has already passed.';
+  if (others.some((x) => overlaps(x, t))) return 'That overlaps another window.';
+  return null;
+}
+
 type State = {
   door: 'roster' | 'apply' | null;
   name: string;
@@ -14,6 +28,8 @@ type State = {
   hideFromSchool: boolean;
   paused: boolean;
   vouchesLeft: number;
+  home: GeoPlace;
+  trips: Trip[]; // up to two upcoming windows
 };
 
 const initial: State = {
@@ -28,6 +44,8 @@ const initial: State = {
   hideFromSchool: false,
   paused: false,
   vouchesLeft: 2,
+  home: LA,
+  trips: [],
 };
 
 type Actions = {
@@ -38,6 +56,8 @@ type Actions = {
   decide: (id: string, yes: boolean) => boolean; // returns true on a match
   send: (id: string, text: string) => void;
   markRead: (id: string, count: number) => void;
+  saveTrip: (t: Trip) => void;
+  removeTrip: (id: string) => void;
   set: (patch: Partial<State>) => void;
   reset: () => void;
 };
@@ -72,6 +92,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         }, 1800);
       },
       markRead: (id, count) => setS((p) => (p.read[id] === count ? p : { ...p, read: { ...p.read, [id]: count } })),
+      saveTrip: (t) =>
+        setS((p) => ({ ...p, trips: [...p.trips.filter((x) => x.id !== t.id), t].sort((x, y) => x.start.localeCompare(y.start)) })),
+      removeTrip: (id) => setS((p) => ({ ...p, trips: p.trips.filter((x) => x.id !== id) })),
       set: (patch) => setS((p) => ({ ...p, ...patch })),
       reset: () => setS(initial),
     }),
