@@ -7,6 +7,15 @@ A private room, not a dating app. Quiet and confident. The less it explains, the
 ## Look
 
 - Monochrome: night `#0C0C0B`, night-2 `#161614`, night-3 `#24231F`, bone `#F1EEE7`, ash `#8C8980`, smoke `#5C5A54`.
+- Surfaces use iOS Liquid Glass: translucent, blurred, over the photography. Tab bar, sheets and controls only.
+- Olympic-poster color on top of the monochrome base. Flat, never gradients, taken from the vintage posters on the Pinterest board:
+  - torch `#E2412D`: matches, Date mode.
+  - sky `#2F7FD0`: Friends mode.
+  - sun `#F2C230` and grass `#2FA562`: only inside the four-color band (torch, sun, sky, grass).
+  - paper `#F0E9D2`: the membership card.
+  - The band appears on the membership card and as the short bar under "Accepted." Nowhere else.
+  - Color never fills the primary button, the tab bar or other interface chrome.
+  - No rings and no "Olympic" wording or marks. The colors are mood, not assets.
 - Type: Newsreader (light weight) for the wordmark and headlines, Hanken Grotesk for everything else.
 - The wordmark is lowercase: `lettered`.
 - Photography carries the color. The interface stays out of the way.

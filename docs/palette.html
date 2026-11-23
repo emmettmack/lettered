@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>lettered — accent palette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;1,6..72,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0C0C0B; --night-2:#161614; --night-3:#24231F;
+  --bone:#F1EEE7; --ash:#8C8980; --smoke:#5C5A54;
+  --torch:#E2412D; --sky:#2F7FD0;}
+*{box-sizing:border-box;margin:0}
+body{background:var(--night);color:var(--bone);font:400 15px/1.55 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:1040px;margin:0 auto;padding:72px 32px 120px}
+h1{font:300 56px/1 Newsreader,serif;letter-spacing:-.01em}
+h2{font:500 11px/1 "Hanken Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);margin:88px 0 28px}
+.lede{color:var(--ash);margin-top:20px;max-width:46ch}
+.row{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--night-3);border:1px solid var(--night-3)}
+.row div{background:var(--c);height:132px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-size:12px;color:var(--t,var(--bone))}
+.row b{font-weight:500;display:block}
+.row span{opacity:.7}
+.acc{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.card{border:1px solid var(--night-3);padding:0}
+.card .sw{height:180px;background:var(--c)}
+.card .tx{padding:20px}
+.card h3{font:300 26px/1.1 Newsreader,serif;margin-bottom:6px}
+.card code{font:500 12px "Hanken Grotesk";color:var(--ash);letter-spacing:.04em}
+.card p{color:var(--ash);font-size:13px;margin-top:14px}
+.tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
+.scenes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.scene{aspect-ratio:9/16;background:var(--night);border:1px solid var(--night-3);padding:28px 24px;display:flex;flex-direction:column;position:relative}
+.scene .cap{margin-top:auto;font-size:12px;color:var(--ash)}
+.scene .w{font:300 34px/1.1 Newsreader,serif}
+.scene .w i{color:var(--torch);font-style:italic}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--torch);display:inline-block;margin-right:8px;vertical-align:middle}
+.btn{margin-top:28px;background:var(--bone);color:var(--night);padding:15px;text-align:center;font-weight:500;font-size:14px}
+.seg{display:flex;gap:6px;margin-top:20px}
+.seg span{flex:1;text-align:center;padding:10px;border:1px solid var(--night-3);font-size:13px;color:var(--ash)}
+.seg .on{color:var(--bone);border-color:var(--c)}
+.hair{height:1px;background:var(--torch);width:40px;margin:20px 0}
+ul.rules{list-style:none;padding:0;color:var(--ash);max-width:60ch}
+ul.rules li{padding:14px 0;border-top:1px solid var(--night-3)}
+ul.rules li b{color:var(--bone);font-weight:500}
+.src{display:flex;gap:1px;height:12px;margin-top:40px;max-width:420px}
+.src i{flex:1;background:var(--c)}
+@media(max-width:760px){main{padding:48px 16px 80px}.row{grid-template-columns:repeat(3,1fr)}.acc,.scenes{grid-template-columns:1fr}h1{font-size:44px}}
+</style>
+</head>
+<body>
+<main>
+<h1>lettered</h1>
+<p class="lede">Superseded by the Look section of brand.md.</p>
+
+<h2>Accents · pulled from the board, toned down to sit on night</h2>
+<div class="acc">
+  <div class="card" style="--c:var(--torch)"><div class="sw"></div><div class="tx">
+    <h3>torch</h3><code>#E2412D</code>
+    <p>The flame in the 1980 and 1932-era torch posters, cut back from pure red. The one accent. Matches, acceptance, anything that should feel like a moment.</p>
+    <span class="tag">Primary · 4.5:1 on night</span></div></div>
+  <div class="card" style="--c:var(--sky)"><div class="sw"></div><div class="tx">
+    <h3>sky</h3><code>#2F7FD0</code>
+    <p>The blue behind the raised torch. Reserved for Friends mode, so Date and Friends read differently without labels.</p>
+    <span class="tag">Secondary · 5.2:1 on night</span></div></div>
+  </div>
+
+<h2>In use · three moments</h2>
+<div class="scenes">
+  <div class="scene">
+    <div class="w">The committee said yes.</div>
+    <div class="hair"></div>
+    <div style="color:var(--ash);font-size:14px">It doesn't say that often.</div>
+    <div class="btn">Continue</div>
+    <div class="cap">Accepted. Torch hairline only.</div>
+  </div>
+  <div class="scene">
+    <div class="w">It's mutual<i>.</i></div>
+    <div style="color:var(--ash);font-size:14px;margin-top:14px"><span class="dot"></span>New match</div>
+    <div class="btn">Say something</div>
+    <div class="cap">Match. Torch on the period and the dot.</div>
+  </div>
+  <div class="scene" style="--c:var(--sky)">
+    <div class="w">Discover</div>
+    <div class="seg"><span>Date</span><span class="on">Friends</span></div>
+    <div class="cap" style="margin-top:auto">Friends mode. Sky on the active edge.</div>
+  </div>
+</div>
+
+<h2>Rules</h2>
+<ul class="rules">
+  <li><b>One accent per screen.</b> Never torch and sky together.</li>
+  <li><b>Never a button.</b> The one primary button stays bone on night.</li>
+  <li><b>Never fills.</b> Hairlines, dots, a single character. No colored backgrounds or cards.</li>
+  <li><b>Never in chrome.</b> Tab bar, nav and status stay monochrome.</li>
+  <li><b>No rings, no Olympic marks.</b> The board is mood, not assets.</li>
+</ul>
+
+</main>
+</body>
+</html>
